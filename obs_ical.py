@@ -19,48 +19,11 @@ from datetime import datetime, timedelta, timezone
 
 resync      = 0
 cal_url     = ""
-interval    = 30
-max_events  = 3
-source_names = [""]*max_events
-image_sources = [""]*max_events
-images_path = ''
+interval    = 60
+max_events  = 4
+
 
 # ------------------------------------------------------------
-
-# If modifying these scopes, delete your previously saved credentials
-# at ~/.credentials/calendar-python-quickstart.json
-SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
-CLIENT_SECRET_FILE = ''
-APPLICATION_NAME = 'Google Calendar OBS event script'
-
-# https://learnpython.com/blog/working-with-icalendar-with-python/
-def get_credentials():
-    """Gets valid user credentials from storage.
-
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'calendar-python.json')
-
-    store = Storage(credential_path)
-    credentials = store.get()
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        credentials = tools.run_flow(flow, store)
-        print('Storing credentials to ' + credential_path)
-    return credentials
-
-# ------------------------------------------------------------
-
 
 def update_actions():
     global cal_url
